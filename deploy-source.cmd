@@ -1,4 +1,4 @@
-
+@echo off
 git config core.autocrlf false
 git add .
 git commit -m "deploy"
