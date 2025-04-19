@@ -1,7 +1,7 @@
 package com.alison.dataframe
 
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.functions._
+import org.apache.spark.sql.functions.col
 
 object TestRead {
 
@@ -24,14 +24,14 @@ object TestRead {
 //    df2.createGlobalTempView("user_global")
 //    spark.sql("SELECT * FROM global_temp.user_global").show()
 
-
     //case4: dsl query
+    import spark.implicits._
     val df3 = spark.read.json("data/input/user1.json")
-    df3.printSchema()
     df3.select("username", "age").show()
 
     df3.select($"username", ($"age" + 1).alias("newage")).show()
-//    df3.select('username, 'age  + 1).show()
-//    df3.select('username, 'age + 1 as "newage").show()
+    df3.select(col("username"), (col("age") + 1).alias("newage")).show()
+    df3.filter($"age">=30).show
+    df3.groupBy("age").count.show
   }
 }
