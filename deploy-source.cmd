@@ -2,7 +2,7 @@
 
 git config core.autocrlf false
 git add .
-:: @REM git rm -r --cached .idea
+git rm -r --cached .idea
 git commit -m 'deploy spark-sql demo to github'
 :: @REM  git remote add origin git@github.com:GavinAlison2/spark-demo.git
 :: git branch -M master
